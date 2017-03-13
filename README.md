@@ -1,1 +1,1 @@
-This is the relay module
+This folder has underdevelopment libs for NanoPi M1
