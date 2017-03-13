@@ -1,9 +1,27 @@
-
 #include "relaymodule.h"
-void numberOfMotors(unsigned char numofmotors,int pins[]){
+#include "libfahw-gpio.h"
+
+#define STATE_BACKWARD 0
+#define STATE_FORWARD 1
+#define STATE_STOP 3
+
+void setMotorState(struct motor,int);
+
+unsigned char numOfMotors;
+
+struct motor{
+    unsigned char relay1;
+    unsigned char relay2;
+};
+
+struct motor motors[4];
+
+int intializeMotors(unsigned char numofmotors,int pins[]){
     numOfMotors = numofmotors;
     int i,j;
-   boardInit();
+    if (( boardInit()) < 0) {
+        return -1;
+    }
     for( i=0,j=0; i < numOfMotors ; i ++,j+=2)
     {
       motors[i].relay1 = GPIO_PIN(pins[j]);
@@ -15,6 +33,7 @@ void numberOfMotors(unsigned char numofmotors,int pins[]){
 
     }
     stop();
+    return 0;
 }
 
 
