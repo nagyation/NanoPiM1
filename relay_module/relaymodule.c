@@ -5,7 +5,6 @@
 #define STATE_FORWARD 1
 #define STATE_STOP 3
 
-void setMotorState(struct motor,int);
 
 unsigned char numOfMotors;
 
